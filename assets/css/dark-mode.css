@@ -1,0 +1,104 @@
+/* Full-site dark mode via invert — covers any theme */
+html.quick-top-dark-mode {
+    background-color: #111 !important;
+    color-scheme: dark;
+    filter: invert(1) hue-rotate(180deg);
+}
+
+/* Keep media looking natural after page invert */
+html.quick-top-dark-mode img,
+html.quick-top-dark-mode video,
+html.quick-top-dark-mode picture,
+html.quick-top-dark-mode iframe,
+html.quick-top-dark-mode embed,
+html.quick-top-dark-mode object,
+html.quick-top-dark-mode svg image,
+html.quick-top-dark-mode .quick-top-dark-toggle,
+html.quick-top-dark-mode .quick-top-no-invert,
+html.quick-top-dark-mode [data-quick-top-no-invert] {
+    filter: invert(1) hue-rotate(180deg);
+}
+
+/* Avoid double invert on nested media wrappers where possible */
+html.quick-top-dark-mode img.quick-top-no-invert,
+html.quick-top-dark-mode video.quick-top-no-invert {
+    filter: none;
+}
+
+/* Floating dark mode toggle */
+.quick-top-dark-toggle {
+    position: fixed;
+    z-index: 100000;
+    width: 48px;
+    height: 48px;
+    border: 0;
+    border-radius: 50%;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #111;
+    color: #fff;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+    transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+}
+
+.quick-top-dark-toggle:hover {
+    transform: scale(1.06);
+}
+
+.quick-top-dark-toggle:focus-visible {
+    outline: 2px solid #2271b1;
+    outline-offset: 3px;
+}
+
+.quick-top-dark-toggle--bottom-left {
+    bottom: 24px;
+    left: 24px;
+}
+
+.quick-top-dark-toggle--bottom-right {
+    bottom: 24px;
+    right: 24px;
+}
+
+.quick-top-dark-toggle--top-left {
+    top: 24px;
+    left: 24px;
+}
+
+.quick-top-dark-toggle--top-right {
+    top: 24px;
+    right: 24px;
+}
+
+.quick-top-dark-toggle__icon {
+    display: none;
+    line-height: 1;
+    font-size: 18px;
+}
+
+html:not(.quick-top-dark-mode) .quick-top-dark-toggle__icon--moon {
+    display: inline-block;
+}
+
+html.quick-top-dark-mode .quick-top-dark-toggle__icon--sun {
+    display: inline-block;
+}
+
+html.quick-top-dark-mode .quick-top-dark-toggle {
+    background: #f3f4f6;
+    color: #111;
+}
+
+/* Keep WP admin bar readable while browsing as logged-in admin */
+html.quick-top-dark-mode #wpadminbar {
+    filter: invert(1) hue-rotate(180deg);
+}
+
+@media (max-width: 768px) {
+    .quick-top-dark-toggle {
+        width: 44px;
+        height: 44px;
+    }
+}
