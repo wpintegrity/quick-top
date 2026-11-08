@@ -3,7 +3,7 @@
  * Plugin Name:       Quick Top and WP Dark Mode
  * Plugin URI:        https://github.com/wpintegrity/quick-top
  * Description:       Modern scroll-to-top button and full-site dark mode for WordPress.
- * Version:           1.3.1
+ * Version:           1.4.0
  * Requires at least: 6.4
  * Requires PHP:      7.4
  * Author:            Tanvir Hasan
@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'QUICK_TOP_VERSION', '1.3.1' );
+define( 'QUICK_TOP_VERSION', '1.4.0' );
 define( 'QUICK_TOP_FILE', __FILE__ );
 define( 'QUICK_TOP_PATH', plugin_dir_path( __FILE__ ) );
 define( 'QUICK_TOP_URL', plugin_dir_url( __FILE__ ) );

@@ -7,8 +7,8 @@ Tags: scroll to top, back to top, dark mode, night mode, custom icon, svg, png, 
 Requires at least: 6.4
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.3.1
-Version: 1.3.1
+Stable tag: 1.4.0
+Version: 1.4.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Plugin URI: https://wordpress.org/plugins/quick-top
@@ -115,13 +115,17 @@ Open **Quick Top** from the left admin menu.
 
 == Screenshots ==
 
-1. Modern settings page with Scroll Button controls and live preview
+1. Scroll Button settings with live preview
 2. Dark Mode settings tab
-3. Custom PNG/SVG icon upload field
-4. Frontend back-to-top button
-5. Frontend dark mode toggle
+3. Frontend dark mode with floating toggle
+4. Frontend light mode with back-to-top and dark mode controls
 
 == Changelog ==
+
+= 1.4.0 =
+* Refreshed WordPress.org banner, icon, and screenshots
+* Added GitHub Actions deploy so publishing a GitHub Release updates WordPress.org
+* Confirmed packaging for future automated releases
 
 = 1.3.1 =
 * Confirmed compatibility with WordPress 7.1.x
@@ -153,6 +157,9 @@ Open **Quick Top** from the left admin menu.
 * Initial release with customizable scroll-to-top button
 
 == Upgrade Notice ==
+
+= 1.4.0 =
+Branding update with new banner, icon, and screenshots. Future releases deploy from GitHub to WordPress.org.
 
 = 1.3.1 =
 Compatibility update for the latest WordPress 7.1 release, with safer settings sanitization and conditional asset loading.

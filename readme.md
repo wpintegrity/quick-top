@@ -1,6 +1,6 @@
 # Quick Top and WP Dark Mode
 
-**Version:** 1.3.1  
+**Version:** 1.4.0  
 **Author:** [Tanvir Hasan](https://profiles.wordpress.org/tanvirh/)  
 **Requires WordPress:** 6.4+  
 **Tested up to:** WordPress 7.1  
@@ -135,6 +135,11 @@ In the admin sidebar under **Quick Top**.
 ---
 
 ## Changelog
+
+### 1.4.0
+- Refreshed WordPress.org banner, icon, and screenshots
+- Added GitHub Actions deploy so publishing a GitHub Release updates WordPress.org
+- Confirmed packaging for future automated releases
 
 ### 1.3.1
 - Confirmed compatibility with WordPress 7.1.x
