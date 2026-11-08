@@ -1,8 +1,9 @@
 # Quick Top and WP Dark Mode
 
-**Version:** 1.3.0  
+**Version:** 1.3.1  
 **Author:** [Tanvir Hasan](https://profiles.wordpress.org/tanvirh/)  
-**Requires WordPress:** 6.4.2+  
+**Requires WordPress:** 6.4+  
+**Tested up to:** WordPress 7.1  
 **Requires PHP:** 7.4+  
 **License:** GPLv2 or later
 
@@ -134,6 +135,13 @@ In the admin sidebar under **Quick Top**.
 ---
 
 ## Changelog
+
+### 1.3.1
+- Confirmed compatibility with WordPress 7.1.x
+- Updated plugin headers (`Requires at least`, `Requires PHP`, `Domain Path`)
+- Added modern `register_setting` sanitize callback
+- Load front-end assets only when features are enabled
+- Use deferred script loading strategy where supported
 
 ### 1.3.0
 - Added custom PNG/SVG icon upload for the scroll button

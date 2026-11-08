@@ -4,11 +4,11 @@ Author: Tanvir Hasan
 Author URI: https://profiles.wordpress.org/tanvirh/
 Donate link: https://profiles.wordpress.org/tanvirh/
 Tags: scroll to top, back to top, dark mode, night mode, custom icon, svg, png, floating button
-Requires at least: 6.4.2
-Tested up to: 6.7
+Requires at least: 6.4
+Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.3.0
-Version: 1.3.0
+Stable tag: 1.3.1
+Version: 1.3.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Plugin URI: https://wordpress.org/plugins/quick-top
@@ -123,6 +123,13 @@ Open **Quick Top** from the left admin menu.
 
 == Changelog ==
 
+= 1.3.1 =
+* Confirmed compatibility with WordPress 7.1.x
+* Updated plugin headers (Requires at least, Requires PHP, Domain Path)
+* Added modern register_setting sanitize callback
+* Load front-end assets only when features are enabled
+* Use deferred script loading strategy where supported
+
 = 1.3.0 =
 * Added custom PNG/SVG icon upload for the scroll button
 * Custom icons override Font Awesome presets
@@ -146,6 +153,9 @@ Open **Quick Top** from the left admin menu.
 * Initial release with customizable scroll-to-top button
 
 == Upgrade Notice ==
+
+= 1.3.1 =
+Compatibility update for the latest WordPress 7.1 release, with safer settings sanitization and conditional asset loading.
 
 = 1.3.0 =
 Adds custom PNG/SVG icon upload for the Quick Top button, plus improved frontend behavior.

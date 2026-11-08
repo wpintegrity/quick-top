@@ -171,8 +171,106 @@ function quick_top_settings_page() {
     <?php
 }
 
+/**
+ * Sanitize plugin settings before save.
+ *
+ * @param mixed $input Raw settings.
+ * @return array
+ */
+function quick_top_sanitize_settings( $input ) {
+	$defaults = quick_top_get_settings();
+	$input    = is_array( $input ) ? $input : array();
+	$output   = array();
+
+	$checkboxes = array( 'enabled', 'mobile_enabled', 'dark_mode_enabled', 'dark_mode_toggle' );
+	foreach ( $checkboxes as $key ) {
+		$output[ $key ] = ! empty( $input[ $key ] ) ? 1 : 0;
+	}
+
+	$ints = array(
+		'border_radius'   => array( 0, 100 ),
+		'icon_size'       => array( 10, 100 ),
+		'bg_width'        => array( 10, 500 ),
+		'bg_height'       => array( 10, 500 ),
+		'padding'         => array( 0, 100 ),
+		'margin_top'      => array( 0, 200 ),
+		'margin_right'    => array( 0, 200 ),
+		'margin_bottom'   => array( 0, 200 ),
+		'margin_left'     => array( 0, 200 ),
+		'scroll_distance' => array( 0, 5000 ),
+		'custom_icon_id'  => array( 0, PHP_INT_MAX ),
+	);
+
+	foreach ( $ints as $key => $range ) {
+		$value            = isset( $input[ $key ] ) ? absint( $input[ $key ] ) : absint( $defaults[ $key ] );
+		$output[ $key ]   = max( $range[0], min( $range[1], $value ) );
+	}
+
+	$allowed_icons = array(
+		'fa-arrow-up',
+		'fa-arrow-down',
+		'fa-arrow-left',
+		'fa-arrow-right',
+		'fa-chevron-up',
+		'fa-chevron-down',
+		'fa-chevron-left',
+		'fa-chevron-right',
+	);
+	$icon = isset( $input['icon'] ) ? sanitize_text_field( $input['icon'] ) : $defaults['icon'];
+	$output['icon'] = in_array( $icon, $allowed_icons, true ) ? $icon : 'fa-arrow-up';
+
+	$allowed_positions = array( 'bottom-right', 'bottom-left', 'top-right', 'top-left' );
+	$position = isset( $input['position'] ) ? sanitize_text_field( $input['position'] ) : $defaults['position'];
+	$output['position'] = in_array( $position, $allowed_positions, true ) ? $position : 'bottom-right';
+
+	$allowed_defaults = array( 'light', 'dark', 'system' );
+	$dark_default = isset( $input['dark_mode_default'] ) ? sanitize_text_field( $input['dark_mode_default'] ) : $defaults['dark_mode_default'];
+	$output['dark_mode_default'] = in_array( $dark_default, $allowed_defaults, true ) ? $dark_default : 'light';
+
+	$toggle_position = isset( $input['dark_mode_toggle_position'] ) ? sanitize_text_field( $input['dark_mode_toggle_position'] ) : $defaults['dark_mode_toggle_position'];
+	$output['dark_mode_toggle_position'] = in_array( $toggle_position, $allowed_positions, true ) ? $toggle_position : 'bottom-left';
+
+	$output['icon_color']    = isset( $input['icon_color'] ) ? sanitize_hex_color( $input['icon_color'] ) : $defaults['icon_color'];
+	$output['icon_bg_color'] = isset( $input['icon_bg_color'] ) ? sanitize_hex_color( $input['icon_bg_color'] ) : $defaults['icon_bg_color'];
+
+	if ( empty( $output['icon_color'] ) ) {
+		$output['icon_color'] = '#ffffff';
+	}
+	if ( empty( $output['icon_bg_color'] ) ) {
+		$output['icon_bg_color'] = '#000000';
+	}
+
+	$custom_id  = $output['custom_icon_id'];
+	$custom_url = '';
+	if ( $custom_id ) {
+		$attachment_url = wp_get_attachment_url( $custom_id );
+		if ( $attachment_url ) {
+			$custom_url = esc_url_raw( $attachment_url );
+		} else {
+			$output['custom_icon_id'] = 0;
+		}
+	}
+
+	if ( ! $custom_url && ! empty( $input['custom_icon_url'] ) ) {
+		$custom_url = esc_url_raw( $input['custom_icon_url'] );
+	}
+
+	$output['custom_icon_url'] = $custom_url;
+
+	return $output;
+}
+
 function quick_top_register_settings() {
-    register_setting( 'quick_top_settings_group', 'quick_top_settings' );
+	register_setting(
+		'quick_top_settings_group',
+		'quick_top_settings',
+		array(
+			'type'              => 'array',
+			'sanitize_callback' => 'quick_top_sanitize_settings',
+			'default'           => array(),
+			'show_in_rest'      => false,
+		)
+	);
 
     add_settings_section(
         'quick_top_main_section',

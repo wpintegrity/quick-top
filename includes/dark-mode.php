@@ -16,19 +16,25 @@ function quick_top_dark_mode_enqueue() {
 
     $options = quick_top_get_settings();
 
+    $version = defined( 'QUICK_TOP_VERSION' ) ? QUICK_TOP_VERSION : '1.3.1';
+    $base    = defined( 'QUICK_TOP_URL' ) ? QUICK_TOP_URL : plugins_url( '../', __FILE__ );
+
     wp_enqueue_style(
         'quick-top-dark-mode',
-        plugins_url( '../assets/css/dark-mode.css', __FILE__ ),
+        $base . 'assets/css/dark-mode.css',
         array(),
-        '1.0.1'
+        $version
     );
 
     wp_enqueue_script(
         'quick-top-dark-mode',
-        plugins_url( '../assets/js/dark-mode.js', __FILE__ ),
+        $base . 'assets/js/dark-mode.js',
         array(),
-        '1.0.1',
-        true
+        $version,
+        array(
+            'in_footer' => true,
+            'strategy'  => 'defer',
+        )
     );
 
     wp_localize_script(
